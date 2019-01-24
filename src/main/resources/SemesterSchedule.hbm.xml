@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "- //Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.smarterama.semina.university.domain.SemesterSchedule"
+		table="semesterschedule">
+		<id name="id" column="semesterschedule_id" type="java.lang.Integer">
+			<generator class="identity" />
+		</id>
+		<property name="startDate" type="java.util.GregorianCalendar">
+			<column name="start_date"/>
+		</property>
+		<property name="endDate" type="java.util.GregorianCalendar">
+			<column name="end_date"/>
+		</property>
+        <bag name="schedules" table="semesterschedule_scheduleunit" lazy = "false"  >
+			<key column="semesterschedule_id" />
+			<many-to-many lazy = "false" column="scheduleunit_id" unique="true" class="com.smarterama.semina.university.domain.ScheduleUnit" fetch="join"/>
+		</bag>
+	</class>
+</hibernate-mapping>

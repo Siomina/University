@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "- //Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.smarterama.semina.university.domain.ScheduleUnit"
+		table="scheduleunit">
+		<id name="id" column="scheduleunit_id" type="java.lang.Integer">
+			<generator class="identity" />
+		</id>
+		<property name="date" type="java.util.GregorianCalendar">
+			<column name="date"/>
+		</property>
+		
+        <join table="scheduleunit_room" optional="true">
+                <key column="scheduleunit_id" unique="true"/>
+                <many-to-one name="room" column="room_id" lazy="false"  not-null="false" unique="true"/>
+        </join>
+        <join table="scheduleunit_group" optional="true">
+                <key column="scheduleunit_id" unique="true"/>
+                <many-to-one name="group" column="group_id" lazy="false"  not-null="false" unique="true"/>
+        </join>
+        <join table="scheduleunit_discipline" optional="true">
+                <key column="scheduleunit_id" unique="true"/>
+                <many-to-one name="discipline" column="discipline_id" lazy="false"  not-null="false" unique="true"/>
+        </join>
+        <join table="scheduleunit_lecturer" optional="true">
+                <key column="scheduleunit_id" unique="true"/>
+                <many-to-one name="lecturer" column="lecturer_id" lazy="false"  not-null="false" unique="true"/>
+        </join>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "- //Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.smarterama.semina.university.domain.Faculty"
+		table="faculty">
+		<id name="id" column="faculty_id" type="java.lang.Integer">
+			<generator class="identity" />
+		</id>
+		<property name="name" type="java.lang.String">
+			<column name="name" length="40" not-null="true" />
+		</property>
+		
+		<bag name="groups" table="faculty_groups" lazy = "false" inverse="false">
+			<key column="faculty_id" />
+			<many-to-many lazy = "false"  column="group_id" unique="true" class="com.smarterama.semina.university.domain.Group" />
+		</bag>
+		<bag name="departments" table="faculty_departments" lazy = "false" inverse="false" >
+			<key column="faculty_id" />
+			<many-to-many lazy = "false" column="department_id" unique="true" class="com.smarterama.semina.university.domain.Department" />
+		</bag>
+	</class>
+</hibernate-mapping>
